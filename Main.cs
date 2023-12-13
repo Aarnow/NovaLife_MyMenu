@@ -23,7 +23,7 @@ namespace MyMenu
 
             if(keyCode == KeyCode.P)
             {
-                menu.OpenMyMenu(player);
+                if(!onUI) menu.OpenMyMenu(player);
             }
         }
     }
