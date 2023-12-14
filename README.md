@@ -27,7 +27,36 @@ Pour l'utiliser, suivez ces étapes :
 Exemples à venir...
 
 ```csharp
-//exemple
+// Commencer par créer une section en renseignant la version de votre plugin et votre pseudo
+Section section = new Section(Section.GetSourceName(), Section.GetSourceName(), "v0.0.0", "Author");
+
+// Créer une expression lambda prenant UIPanel en paramètre et renseigner votre fonction principale
+Action<UIPanel> action = ui => Function();
+
+//-------------------------------------------------------------------
+
+// (Facultatif) CONDITIONS PAR DÉFAUT:
+// Quels sont les identifiants des sociétés ayant accès à votre section ? (Ne rien indiquer n'applique pas de condition)
+// exemple:
+section.SetBizIdAllowed(1, 4);
+
+// Quels sont les types de sociétés ayant accès à votre section ? (Ne rien indiquer n'applique pas de condition)
+// exemple:
+section.SetBizTypeAllowed(Activity.Type.Chef, Activity.Type.Electrician);
+
+// Est-ce que votre section est accessible uniquement par des administrateurs ? (false par défaut)
+// exemple:
+section.OnlyAdmin = true;
+
+// Quel rang minimum requis d'un administrateur pour accéder à votre section ? (0 par défaut)
+// exemple:
+section.MinAdminLevel = 5;
+
+//-------------------------------------------------------------------
+
+// Création de votre TabLine et insertion dans MyMenu
+section.Line = new UITabLine(section.Title, action);
+section.Insert();
 ```
 
 ## Droits de Propriété Intellectuelle
