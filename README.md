@@ -1,3 +1,5 @@
+![Nom de l'image](https://cdn.discordapp.com/attachments/517055230756782095/1184904638990921809/mymenu-ico.png?ex=658dab70&is=657b3670&hm=c4dd168c7ae7252d4da6d53868f151fee5b9a8da544ecd7f3df0360467d55ffe&)
+
 # Novalife Plugin MyMenu
 
 Ce plugin Novalife MyMenu fournit la base d'un menu sur lequel les différents développeurs de plugins peuvent implémenter leurs sections respectives.
