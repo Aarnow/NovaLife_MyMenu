@@ -15,17 +15,12 @@ namespace MyMenu.Entities
     public class Section
     {
         public string SourceName { get; set; }
-
         public string Title { get; set; }
-
         [JsonIgnore]
         public string Version { get; set; }
-
         public string Author { get; set; }
-
         [JsonIgnore]
         public UITabLine Line { get; set; }
-
         public List<int> BizIdAllowed { get; set; }
         public List<Activity.Type> BizTypeAllowed { get; set; }
         public bool OnlyAdmin { get; set; }

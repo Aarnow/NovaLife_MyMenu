@@ -86,7 +86,7 @@ namespace MyMenu.Panels
 
             foreach (Section section in Main.menu.Sections)
             {
-                panel.AddTabLine($"{section.SourceName}", ui => PanelManager.NextPanel(player, ui, () => OpenConfigSection(player, section)));
+                panel.AddTabLine($"{section.SourceName} <i>({section.Title})</i>", ui => PanelManager.NextPanel(player, ui, () => OpenConfigSection(player, section)));
             }
 
             panel.AddButton("Configurer", ui => ui.SelectTab());
