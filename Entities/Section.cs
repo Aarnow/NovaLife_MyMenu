@@ -7,20 +7,22 @@ using System.Reflection;
 using System.Collections.Generic;
 using Life.BizSystem;
 using Newtonsoft.Json;
+using static System.Collections.Specialized.BitVector32;
+using System.Linq;
 
-namespace MyMenu
+namespace MyMenu.Entities
 {
     public class Section
     {
         public string SourceName { get; set; }
-        
+
         public string Title { get; set; }
-        
+
         [JsonIgnore]
         public string Version { get; set; }
-        
+
         public string Author { get; set; }
-        
+
         [JsonIgnore]
         public UITabLine Line { get; set; }
 
@@ -43,7 +45,6 @@ namespace MyMenu
 
         public void Insert()
         {
-            Debug.Log("INSERT: " + SourceName);
             try
             {
                 Main.menu.Sections.Add(this);
@@ -61,8 +62,18 @@ namespace MyMenu
         }
 
         public static string GetSourceName()
-        { 
+        {
             return Assembly.GetCallingAssembly().GetName().Name;
+        }
+
+        public void SetBizIdAllowed(params int[] bizIdAllowed)
+        {
+            BizIdAllowed.AddRange(bizIdAllowed.Distinct());
+        }
+
+        public void SetBizTypeAllowed(params Activity.Type[] bizTypeAllowed)
+        {
+            BizTypeAllowed.AddRange(bizTypeAllowed.Distinct());
         }
     }
 }

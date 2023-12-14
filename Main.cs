@@ -5,6 +5,8 @@ using System.IO;
 using UnityEngine;
 using System.Linq;
 using Newtonsoft.Json;
+using MyMenu.Panels;
+using MyMenu.Entities;
 
 namespace MyMenu
 {
@@ -68,7 +70,7 @@ namespace MyMenu
 
             new SChatCommand("/mymenu", "Permet d'ouvrir le panel du plugin MyMenu", "/mymenu", (player, arg) =>
             {
-                if(player.IsAdmin) menu.OpenConfigPanel(player);
+                if(player.IsAdmin) AdminPanels.OpenConfigPanel(player);
             }).Register();
 
             Debug.Log($"Plugin \"MyMenu\" initialisé avec succès.");
@@ -77,7 +79,7 @@ namespace MyMenu
         public override void OnPlayerInput(Player player, KeyCode keyCode, bool onUI)
         {
             base.OnPlayerInput(player, keyCode, onUI);
-            if(keyCode == menu.Key && !onUI) menu.OpenMenuPanel(player);        
+            if(keyCode == menu.Key && !onUI) PlayerPanels.OpenMenuPanel(player);        
         }
 
         public void InitDirectory()
