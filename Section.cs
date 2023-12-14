@@ -6,34 +6,44 @@ using Life;
 using System.Reflection;
 using System.Collections.Generic;
 using Life.BizSystem;
+using Newtonsoft.Json;
 
 namespace MyMenu
 {
     public class Section
     {
         public string SourceName { get; set; }
+        
         public string Title { get; set; }
+        
+        [JsonIgnore]
         public string Version { get; set; }
+        
         public string Author { get; set; }
+        
+        [JsonIgnore]
         public UITabLine Line { get; set; }
+
         public List<int> BizIdAllowed { get; set; }
         public List<Activity.Type> BizTypeAllowed { get; set; }
         public bool OnlyAdmin { get; set; }
         public int MinAdminLevel { get; set; }
 
-        public Section(string title, string version, string author)
+        public Section(string sourceName, string title, string version, string author, List<int> bizIdAllowed = null, List<Activity.Type> bizTypeAllowed = null, bool onlyAdmin = false, int minAdminLevel = 0)
         {
+            SourceName = sourceName;
             Title = title;
             Version = version;
             Author = author;
-            BizIdAllowed = new List<int>();
-            BizTypeAllowed = new List<Activity.Type>();
-            OnlyAdmin = false;
-            MinAdminLevel = 0;
+            BizIdAllowed = bizIdAllowed == null ? new List<int>() : bizIdAllowed;
+            BizTypeAllowed = bizTypeAllowed == null ? new List<Activity.Type>() : bizTypeAllowed;
+            OnlyAdmin = onlyAdmin;
+            MinAdminLevel = minAdminLevel;
         }
 
         public void Insert()
         {
+            Debug.Log("INSERT: " + SourceName);
             try
             {
                 Main.menu.Sections.Add(this);
