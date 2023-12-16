@@ -35,7 +35,7 @@ public override void OnPluginInit()
 	Section section = new Section(Section.GetSourceName(), Section.GetSourceName(), "v0.0.0", "Author");
 
 	// Créer une expression lambda prenant UIPanel en paramètre et renseigner votre fonction principale
-	Action<UIPanel> action = ui => Function();
+	Action<UIPanel> action = ui => VotreFonction(section.GetPlayer(ui));
 
 	//-------------------------------------------------------------------
 
@@ -58,9 +58,9 @@ public override void OnPluginInit()
 
 	//-------------------------------------------------------------------
 
-	// Création de votre TabLine et insertion dans MyMenu
+	// Création de votre TabLine et insertion dans MyMenu (Renseigner true en paramètre de la fonction Insert SI votre plugin est destiné aux administrateurs)
 	section.Line = new UITabLine(section.Title, action);
-	section.Insert();
+	section.Insert(false);
 }
 ```
 
