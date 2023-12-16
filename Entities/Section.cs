@@ -37,17 +37,22 @@ namespace MyMenu.Entities
             MinAdminLevel = minAdminLevel;
         }
 
-        public void Insert()
+        public void Insert(bool isAdminSection)
         {
-            Debug.Log("INSERT EN COURS.. "+ Title);
             try
             {
-                Main.menu.Sections.Add(this);
+                if(!isAdminSection) Main.menu.Sections.Add(this);
+                else Main.menu.AdminSections.Add(this);
             }
             catch (Exception e)
             {
                 Debug.Log($"Erreur lors de l'ajout d'une nouvelle section dans MyMenu: {e}");
             }
+        }
+
+        public void Insert()
+        {
+            Insert(false);
         }
 
         public Player GetPlayer(UIPanel ui)

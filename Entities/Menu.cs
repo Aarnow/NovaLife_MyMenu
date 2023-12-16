@@ -16,7 +16,6 @@ namespace MyMenu.Entities
         public string Title { get; set; } = "MyMenu";
         public KeyCode Key { get; set; } = KeyCode.P;
         public List<Section> Sections { get; set; } = new List<Section>();
-        [JsonIgnore]
         public List<Section> AdminSections { get; set; } = new List<Section>();
 
         public Menu()

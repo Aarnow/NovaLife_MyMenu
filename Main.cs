@@ -27,6 +27,7 @@ namespace MyMenu
             try
             {
                 string jsonFile = Directory.GetFiles(directoryPath, filename).FirstOrDefault();
+
                 if (jsonFile != null)
                 {
                     string json = File.ReadAllText(jsonFile);
@@ -50,6 +51,26 @@ namespace MyMenu
                         else
                         {
                             menuSetup.Sections.Add(section);
+                            string updatedJson = JsonConvert.SerializeObject(menuSetup, Formatting.Indented);
+                            File.WriteAllText(jsonFile, updatedJson);
+                        }
+                    }
+
+                    foreach (Section section in menu.AdminSections)
+                    {
+                        Section currSection = menuSetup.AdminSections.FirstOrDefault(s => s.SourceName == section.SourceName);
+
+                        if (currSection != null)
+                        {
+                            section.Title = currSection.Title;
+                            section.BizIdAllowed = currSection.BizIdAllowed;
+                            section.BizTypeAllowed = currSection.BizTypeAllowed;
+                            section.OnlyAdmin = currSection.OnlyAdmin;
+                            section.MinAdminLevel = currSection.MinAdminLevel;
+                        }
+                        else
+                        {
+                            menuSetup.AdminSections.Add(section);
                             string updatedJson = JsonConvert.SerializeObject(menuSetup, Formatting.Indented);
                             File.WriteAllText(jsonFile, updatedJson);
                         }
