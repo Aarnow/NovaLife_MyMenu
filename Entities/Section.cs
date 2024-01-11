@@ -103,6 +103,14 @@ namespace MyMenu.Entities
                 Debug.Log($"Erreur lors de l'ajout d'une nouvelle section dans MyMenu: {e}");
             }
         }
+        
+        /// <summary>
+        /// Insert your section in the menu
+        /// </summary>
+        public void Insert()
+        {
+            Insert(false);
+        }
 
         /// <summary>
         /// Get the player who have open the menu
