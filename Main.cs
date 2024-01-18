@@ -81,7 +81,7 @@ namespace MyMenu
                     string filePath = Path.Combine(directoryPath, filename);
                     string json = JsonConvert.SerializeObject(menu, Formatting.Indented);
                     File.WriteAllText(filePath, json);
-                }                          
+                }            
             }
             catch (Exception ex)
             {

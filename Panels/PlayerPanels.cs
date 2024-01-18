@@ -7,7 +7,7 @@ using UIPanelManager;
 
 namespace MyMenu.Panels
 {
-    abstract class PlayerPanels
+    public class PlayerPanels
     {
         public static void OpenMenuPanel(Player player)
         {

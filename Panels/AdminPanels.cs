@@ -11,7 +11,7 @@ using MyMenu.Entities;
 
 namespace MyMenu.Panels
 {
-    abstract class AdminPanels
+    public class AdminPanels
     {
         public static void OpenConfigPanel(Player player)
         {
@@ -19,7 +19,7 @@ namespace MyMenu.Panels
 
             panel.AddTabLine($"{Menu.CreateLabel("Nom du menu")} {Main.menu.Title}", ui => PanelManager.NextPanel(player, ui, () => SetTitleMenu(player)));
             panel.AddTabLine($"{Menu.CreateLabel("Touche d'ouverture")} {Main.menu.Key}", ui => PanelManager.NextPanel(player, ui, () => SetKeyMenu(player)));
-            panel.AddTabLine($"{Menu.CreateLabel("Plugins reliés")} {(Main.menu.Sections.Count == 0 ? "Aucun" : $"{Main.menu.Sections.Count}")}", ui => PanelManager.NextPanel(player, ui, () => OpenPluginList(player)));
+            panel.AddTabLine($"{Menu.CreateLabel("Plugins reliés")} {(Main.menu.Sections.Count == 0 ? "Aucun" : $"{Main.menu.Sections.Count + Main.menu.AdminSections.Count}")}", ui => PanelManager.NextPanel(player, ui, () => OpenPluginList(player)));
 
             panel.AddButton("Sélectionner", ui => ui.SelectTab());
             //panel.AddButton("Discord", ui => Application.OpenURL("http://www.google.com"));
@@ -85,6 +85,11 @@ namespace MyMenu.Panels
             UIPanel panel = new UIPanel("MyMenu", UIPanel.PanelType.Tab).SetTitle($"MyMenu {Main.menu.Version}");
 
             foreach (Section section in Main.menu.Sections)
+            {
+                panel.AddTabLine($"{section.SourceName} <i>({section.Title})</i>", ui => PanelManager.NextPanel(player, ui, () => OpenConfigSection(player, section)));
+            }
+
+            foreach (Section section in Main.menu.AdminSections)
             {
                 panel.AddTabLine($"{section.SourceName} <i>({section.Title})</i>", ui => PanelManager.NextPanel(player, ui, () => OpenConfigSection(player, section)));
             }
